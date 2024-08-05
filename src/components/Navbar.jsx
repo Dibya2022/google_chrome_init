@@ -5,7 +5,9 @@ const Navbar = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isDropdownOpen_support, setIsDropdownOpenSupport] = useState(false);
+  const [isDropdownOpenSupport, setIsDropdownOpenSupport] = useState(false);
+  const [activeMenuItem, setActiveMenuItem] = useState("Home");
+
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY > lastScrollY) {
@@ -29,19 +31,40 @@ const Navbar = () => {
       };
     }
   }, [lastScrollY]);
+
   return (
     <div>
       <nav
-        className={`fixed w-full  shadow-md p-4 transition-transform duration-300 ${
+        className={`fixed w-full z-50 bg-white shadow-md p-4 transition-transform duration-300 ${
           show ? "transform translate-y-0" : "transform -translate-y-full"
         }`}
       >
-        <div className="container ml-2  flex  items-center">
-          <img className="h-9 w-9 " src={logo} alt="chrome logo" />
-          <span className="text-2xl ml-2  ">Chrome</span>
-          <ul className=" flex ml-8 space-x-4 ">
-            <li>Home</li>
-            <li>The Browser by Google</li>
+        <div className="container ml-2 flex items-center">
+          <img
+            className="h-9 w-9 cursor-pointer"
+            src={logo}
+            alt="chrome logo"
+          />
+          <span className="text-2xl cursor-pointer ml-2">Chrome</span>
+          <ul className="flex ml-8 cursor-pointer space-x-4">
+            <li
+              className={`${
+                activeMenuItem === "Home" ? "border-b-2 border-blue-500" : ""
+              }`}
+              onClick={() => setActiveMenuItem("Home")}
+            >
+              Home
+            </li>
+            <li
+              className={`${
+                activeMenuItem === "The Browser by Google"
+                  ? "border-b-2 border-blue-500"
+                  : ""
+              }`}
+              onClick={() => setActiveMenuItem("The Browser by Google")}
+            >
+              The Browser by Google
+            </li>
             <li>
               <div className="relative group">
                 <div
@@ -51,7 +74,7 @@ const Navbar = () => {
                 >
                   Features
                   <button
-                    className="flex items-center justify-center w-5 h-5 pt-1  "
+                    className="flex items-center justify-center w-5 h-5 pt-1"
                     aria-label="dropdown"
                   >
                     <svg
@@ -63,9 +86,9 @@ const Navbar = () => {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="m1 1 4 4 4-4"
                       />
                     </svg>
@@ -73,7 +96,7 @@ const Navbar = () => {
                 </div>
                 {isDropdownOpen && (
                   <div
-                    className="absolute right-0 mt-2 w-48 bg-white  shadow-lg py-2 z-20"
+                    className="absolute right-0 mt-2 w-48 bg-white shadow-lg py-2 z-50"
                     onMouseEnter={() => setIsDropdownOpen(true)}
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
@@ -84,7 +107,7 @@ const Navbar = () => {
                       Overview
                     </a>
                     <a
-                      href="#Google address barx`"
+                      href="#Google address bar"
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
                       Google address bar
@@ -138,7 +161,7 @@ const Navbar = () => {
                 >
                   Support
                   <button
-                    className="flex items-center justify-center w-5 h-5 pt-1  "
+                    className="flex items-center justify-center w-5 h-5 pt-1"
                     aria-label="dropdown"
                   >
                     <svg
@@ -150,17 +173,17 @@ const Navbar = () => {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="m1 1 4 4 4-4"
                       />
                     </svg>
                   </button>
                 </div>
-                {isDropdownOpen_support && (
+                {isDropdownOpenSupport && (
                   <div
-                    className="absolute right-0 mt-2 w-48 bg-white   shadow-lg py-2 z-20"
+                    className="absolute right-0 mt-2 w-48 bg-white shadow-lg py-2 z-50"
                     onMouseEnter={() => setIsDropdownOpenSupport(true)}
                     onMouseLeave={() => setIsDropdownOpenSupport(false)}
                   >
@@ -171,7 +194,7 @@ const Navbar = () => {
                       Helpful tips for Chrome
                     </a>
                     <a
-                      href="#Google address barx`"
+                      href="#Google address bar"
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
                       Support

@@ -44,10 +44,10 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center pt-5">
+      <div className="flex flex-col items-center  pt-5">
         <p>
           Need the Chrome installer?{" "}
-          <span className="text-blue-600">Download here</span>.
+          <span className="text-blue-600 cursor-pointer">Download here</span>.
         </p>
       </div>
     </div>
